@@ -12,6 +12,7 @@ $(function() {
 
     var FeedingView = Backbone.View.extend({
         tagName: 'li',
+        className: 'feeding',
 
         // Cache the template function.
         template: _.template($('#feeding-template').html()),
@@ -31,10 +32,7 @@ $(function() {
                 msPerDay = 86400000,
                 now = Date.now();
             delta = now - time;
-                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
-                    'Thursday', 'Friday', 'Saturday']
-                var day = new Date(time);
-                alert( days[day.getDay()]);
+
             if (delta < msPerDay) {
                 return 'Today';
             }

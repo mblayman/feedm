@@ -1,7 +1,27 @@
 body {
+background: url('noise.png') #2C3D82;
+color: #efefef;
 font-family: 'Ubuntu', sans-serif;
+text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 #no-feedings {
 display: none;
+}
+
+#feedings {
+border-radius: 15px;
+box-shadow: 2px 2px 5px #222222;
+background-color: #EEEEFF;
+color: #111133;
+max-width: 15em;
+}
+
+#history {
+list-style: none;
+padding: 0;
+}
+
+.feeding {
+padding: .5em 1em;
 }
