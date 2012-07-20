@@ -15,12 +15,14 @@
 </head>
 
 <body>
-    <h2>Add a feeding</h2>
+    <h3>Add a feeding</h3>
+    <p><a href='#addNow'>Now</a> or <a href='#addFrom'>From another time</a></p>
     <div id='feedings'>
         <p id='no-feedings'>You have not added any feedings.</p>
         <ul id='history'></ul>
     </div>
 <script type='text/template' id='feeding-template'>
+<%= oz %>oz at <%= time %> <%= date %>
 </script>
 </body>
 </html>
