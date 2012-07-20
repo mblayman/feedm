@@ -17,12 +17,39 @@ $(function() {
         template: _.template($('#feeding-template').html()),
 
         // Display the date from the time (in milliseconds).
-        date: function(time) {
+        _date: function(time) {
             var date = new Date(time),
                 month;
             month = date.getMonth() + 1;
             // XXX: This should be friendlier (like Yesterday, Monday, etc.)
             return date.getFullYear() + '-' + month + '-' + date.getDate()
+        },
+
+        // Display friendly dates.
+        date: function(time) {
+            var delta,
+                msPerDay = 86400000,
+                now = Date.now();
+            delta = now - time;
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+                    'Thursday', 'Friday', 'Saturday']
+                var day = new Date(time);
+                alert( days[day.getDay()]);
+            if (delta < msPerDay) {
+                return 'Today';
+            }
+            else if (delta < (msPerDay * 2)) {
+                return 'Yesterday';
+            }
+            else if (delta < (msPerDay * 7)) {
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+                    'Thursday', 'Friday', 'Saturday']
+                var day = new Date(time);
+                return days[day.getDay()];
+            }
+            else {
+                return this._date(time);
+            }
         },
 
         // Get the readable time from the milliseconds.
@@ -39,7 +66,6 @@ $(function() {
 
         render: function() {
             var model = this.model.toJSON();
-            console.log(model);
             model.date = this.date(model.time);
             model.time = this.time(model.time);
             this.$el.html(this.template(model));
