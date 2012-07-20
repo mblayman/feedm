@@ -8,10 +8,33 @@ $(function() {
     });
     var feedings = new Feedings;
 
-    var FeedingsHistory = Backbone.View.extend({
+    var FeedingView = Backbone.View.extend({
+        tagName: 'li',
+        template: _.template($('#feeding-template').html()),
         render: function() {
-            console.log('I would have rendered');
-            console.log(this.collection);
+            // TODO: Add li in ul.
+            return this;
+        }
+    });
+
+    var FeedingsHistory = Backbone.View.extend({
+        el: 'ul',
+        id: 'history',
+        render: function() {
+            if (this.collection.isEmpty()) {
+                $('#no-feedings').show();
+                return this;
+            }
+
+            var self = this;
+
+            // Show about a day's worth of feedings, ~10.
+            var someFeedings = this.collection.first(10);
+            _.each(someFeedings, function(feeding) {
+                var view = new FeedingView({model: feeding});
+                self.$el.append(view.render().el);
+            });
+
             return this;
         }
     });
