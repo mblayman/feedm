@@ -48,12 +48,14 @@ Date.date = function(time) {
 Date.time = function(ms) {
     var d = new Date(ms),
         hour,
-        meridiem;
+        meridiem,
+        minutes;
     hour = d.getHours() > 12 ? d.getHours() - 12 : d.getHours();
     // Midnight should be 12 not 0.
     hour = hour === 0 ? 12 : hour;
     meridiem = d.getHours() > 12 ? 'pm' : 'am'
-    return hour + ':' + d.getMinutes() + meridiem;
+    minutes = d.getMinutes() <= 9 ? '0' + d.getMinutes() : d.getMinutes();
+    return hour + ':' + minutes + meridiem;
 };
 
 $(function() {
@@ -87,6 +89,11 @@ $(function() {
     var FeedingsHistory = Backbone.View.extend({
         el: 'ul',
         id: 'history',
+
+        initialize: function() {
+            this.collection.on('add', this.addFeeding, this);
+        },
+
         render: function() {
             if (this.collection.isEmpty()) {
                 $('#no-feedings').show();
@@ -94,15 +101,19 @@ $(function() {
             }
 
             var self = this;
-
             // Show about a day's worth of feedings, ~10.
-            var someFeedings = this.collection.last(10).reverse();
+            var someFeedings = this.collection.last(10);
             _.each(someFeedings, function(feeding) {
-                var view = new FeedingView({model: feeding});
-                self.$el.append(view.render().el);
+                self.addFeeding(feeding, 0);
             });
 
             return this;
+        },
+
+        // Add a feeding to the view.
+        addFeeding: function(feeding, duration) {
+            var view = new FeedingView({model: feeding});
+            this.$el.prepend(view.render().$el.hide().fadeIn(duration));
         }
     });
     var feedingsHistory = new FeedingsHistory({collection: feedings});
@@ -121,8 +132,6 @@ $(function() {
                 ml: 125,
                 relativeSize: 'same'
             });
-            console.log(feedings);
-            alert('Adding now!');
         },
 
         addFrom: function() {
