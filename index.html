@@ -22,7 +22,8 @@
         <ul id='history'></ul>
     </div>
 <script type='text/template' id='feeding-template'>
-<%= oz %>oz at <%= time %> <%= date %>
+<span class='<%= relativeSize %>'>&nbsp;</span>
+<%= oz %>oz at <%= time %> <span class='date'><%= date %></span>
 </script>
 </body>
 </html>

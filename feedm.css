@@ -19,17 +19,54 @@ display: none;
 
 #feedings {
 border-radius: 15px;
+border: 1px solid #bbbbbb;
 box-shadow: 2px 2px 5px #222222;
 background-color: #EEEEFF;
 color: #111133;
-max-width: 15em;
+max-width: 14em;
 }
 
 #history {
 list-style: none;
+margin: 0;
 padding: 0;
 }
 
 .feeding {
+border-bottom: 1px solid #d0d0d0;
+background: -moz-linear-gradient(top, #EEEEFF, #DDDDEE);
+background-clip: padding-box;
 padding: .5em 1em;
 }
+
+.feeding:first-child {
+border-radius: 15px 15px 0 0;
+}
+
+.feeding:last-child {
+border-bottom: none;
+border-radius: 0 0 15px 15px;
+}
+
+.date {
+color: #666688;
+}
+
+.bigger {
+background: url('up.png') no-repeat center;
+display: inline-block;
+width: 16px;
+}
+
+.smaller {
+background: url('down.png') no-repeat center;
+display: inline-block;
+width: 16px;
+}
+
+.same {
+display: inline-block;
+margin-top: 4px;
+width: 16px;
+}
+
