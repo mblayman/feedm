@@ -2,6 +2,14 @@ body {
 background: url('noise.png') #2C3D82;
 color: #efefef;
 font-family: 'Ubuntu', sans-serif;
+}
+
+a {
+color: #efefef;
+}
+
+#title {
+margin: .5em 0em;
 text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
 }
 

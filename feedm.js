@@ -1,3 +1,61 @@
+// Extend Date to return some human readable dates and times.
+
+// Check to see if the two dates match.
+Date.datesMatch = function(date, anotherDate) {
+    return date.getFullYear() === anotherDate.getFullYear() &&
+           date.getMonth() === anotherDate.getMonth() &&
+           date.getDate() === anotherDate.getDate();
+}
+
+// Display the date from the time (in milliseconds).
+Date._date = function(time) {
+    var date = new Date(time),
+        month;
+    month = date.getMonth() + 1;
+    return date.getFullYear() + '-' + month + '-' + date.getDate()
+};
+
+Date.date = function(time) {
+    var delta,
+        msPerDay = 86400000,
+        now = Date.now(),
+        then = new Date(time),
+        today,
+        yesterday;
+    delta = now - time;
+    today = new Date(now);
+    // Subtracting a day's worth of milliseconds put the date into yesterday.
+    yesterday = new Date(now - msPerDay);
+
+    if (Date.datesMatch(today, then)) {
+        return 'Today';
+    }
+    else if (Date.datesMatch(yesterday, then)) {
+        return 'Yesterday';
+    }
+    else if (delta < (msPerDay * 7)) {
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+            'Friday', 'Saturday']
+        var day = new Date(time);
+        return days[day.getDay()];
+    }
+    else {
+        return Date._date(time);
+    }
+};
+
+// Get the readable time from the milliseconds.
+Date.time = function(ms) {
+    var d = new Date(ms),
+        hour,
+        meridiem;
+    hour = d.getHours() > 12 ? d.getHours() - 12 : d.getHours();
+    // Midnight should be 12 not 0.
+    hour = hour === 0 ? 12 : hour;
+    meridiem = d.getHours() > 12 ? 'pm' : 'am'
+    return hour + ':' + d.getMinutes() + meridiem;
+};
+
 $(function() {
     //TODO: Put all the globals into a namespace like FEEDM.
 
@@ -17,55 +75,10 @@ $(function() {
         // Cache the template function.
         template: _.template($('#feeding-template').html()),
 
-        // Display the date from the time (in milliseconds).
-        _date: function(time) {
-            var date = new Date(time),
-                month;
-            month = date.getMonth() + 1;
-            // XXX: This should be friendlier (like Yesterday, Monday, etc.)
-            return date.getFullYear() + '-' + month + '-' + date.getDate()
-        },
-
-        // Display friendly dates.
-        date: function(time) {
-            var delta,
-                msPerDay = 86400000,
-                now = Date.now();
-            delta = now - time;
-
-            if (delta < msPerDay) {
-                return 'Today';
-            }
-            else if (delta < (msPerDay * 2)) {
-                return 'Yesterday';
-            }
-            else if (delta < (msPerDay * 7)) {
-                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
-                    'Thursday', 'Friday', 'Saturday']
-                var day = new Date(time);
-                return days[day.getDay()];
-            }
-            else {
-                return this._date(time);
-            }
-        },
-
-        // Get the readable time from the milliseconds.
-        time: function(ms) {
-            var d = new Date(ms),
-                hour,
-                meridiem;
-            hour = d.getHours() > 12 ? d.getHours() - 12 : d.getHours();
-            // Midnight should be 12 not 0.
-            hour = hour === 0 ? 12 : hour;
-            meridiem = d.getHours() > 12 ? 'pm' : 'am'
-            return hour + ':' + d.getMinutes() + meridiem;
-        },
-
         render: function() {
             var model = this.model.toJSON();
-            model.date = this.date(model.time);
-            model.time = this.time(model.time);
+            model.date = Date.date(model.time);
+            model.time = Date.time(model.time);
             this.$el.html(this.template(model));
             return this;
         }
@@ -83,7 +96,7 @@ $(function() {
             var self = this;
 
             // Show about a day's worth of feedings, ~10.
-            var someFeedings = this.collection.first(10);
+            var someFeedings = this.collection.last(10).reverse();
             _.each(someFeedings, function(feeding) {
                 var view = new FeedingView({model: feeding});
                 self.$el.append(view.render().el);
