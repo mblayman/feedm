@@ -5,14 +5,14 @@ Date.datesMatch = function(date, anotherDate) {
     return date.getFullYear() === anotherDate.getFullYear() &&
            date.getMonth() === anotherDate.getMonth() &&
            date.getDate() === anotherDate.getDate();
-}
+};
 
 // Display the date from the time (in milliseconds).
 Date._date = function(time) {
     var date = new Date(time),
         month;
     month = date.getMonth() + 1;
-    return date.getFullYear() + '-' + month + '-' + date.getDate()
+    return date.getFullYear() + '-' + month + '-' + date.getDate();
 };
 
 Date.date = function(time) {
@@ -35,7 +35,7 @@ Date.date = function(time) {
     }
     else if (delta < (msPerDay * 7)) {
         var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-            'Friday', 'Saturday']
+            'Friday', 'Saturday'];
         var day = new Date(time);
         return days[day.getDay()];
     }
@@ -53,7 +53,7 @@ Date.time = function(ms) {
     hour = d.getHours() > 12 ? d.getHours() - 12 : d.getHours();
     // Midnight should be 12 not 0.
     hour = hour === 0 ? 12 : hour;
-    meridiem = d.getHours() > 12 ? 'pm' : 'am'
+    meridiem = d.getHours() > 12 ? 'pm' : 'am';
     minutes = d.getMinutes() <= 9 ? '0' + d.getMinutes() : d.getMinutes();
     return hour + ':' + minutes + meridiem;
 };
@@ -87,8 +87,7 @@ $(function() {
     });
 
     var FeedingsHistory = Backbone.View.extend({
-        el: 'ul',
-        id: 'history',
+        el: 'ul#history',
 
         initialize: function() {
             this.collection.on('add', this.addFeeding, this);
@@ -118,13 +117,20 @@ $(function() {
     });
     var feedingsHistory = new FeedingsHistory({collection: feedings});
 
-    var Router = Backbone.Router.extend({
-        routes: {
-            'addNow': 'addNow',
-            'addFrom': 'addFrom'
+    // A view to control the buttons.
+    var ButtonView = Backbone.View.extend({
+        el: 'div#buttons',
+
+        events: {
+            'click #addNow': 'showAddNow',
+            'click #addFrom': 'addFrom'
         },
 
-        addNow: function() {
+        showAddNow: function() {
+            this.$el.animate({height: 'hide', opacity: 'hide'}, 'fast');
+            return;
+            // FIXME: Animate in a form view.
+            this.$el.show();
             // Show the view for adding something now.
             feedings.create({
                 time: Date.now(),
@@ -138,8 +144,7 @@ $(function() {
             alert('Adding sometime!');
         }
     });
-    var router = new Router;
-    Backbone.history.start();
+    var buttonView = new ButtonView;
 
     // Kick things off and fetch the past feedings to display.
     feedings.on('reset', feedingsHistory.render, feedingsHistory);
