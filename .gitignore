@@ -1,3 +1,2 @@
 *.swp
-rhino*
-jshint*
+node_modules*

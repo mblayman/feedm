@@ -2,6 +2,7 @@ body {
 background: url('noise.png') #2C3D82;
 color: #efefef;
 font-family: 'Ubuntu', sans-serif;
+max-width: 16em;
 }
 
 a {
@@ -49,7 +50,6 @@ border: 1px solid #bbbbbb;
 box-shadow: 2px 2px 5px #222222;
 background-color: #EEEEFF;
 color: #111133;
-max-width: 14em;
 margin-top: 0.5em;
 margin-left: 0.5em;
 }
@@ -99,5 +99,11 @@ width: 16px;
 display: inline-block;
 margin-top: 4px;
 width: 16px;
+}
+
+.form {
+background-color: #eeeeff;
+color: #111133;
+padding: 2em;
 }
 

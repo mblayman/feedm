@@ -68,7 +68,7 @@ $(function() {
         model: Feeding,
         localStorage: new Backbone.LocalStorage('Feedings')
     });
-    var feedings = new Feedings;
+    var feedings = new Feedings();
 
     var FeedingView = Backbone.View.extend({
         tagName: 'li',
@@ -117,34 +117,59 @@ $(function() {
     });
     var feedingsHistory = new FeedingsHistory({collection: feedings});
 
-    // A view to control the buttons.
-    var ButtonView = Backbone.View.extend({
-        el: 'div#buttons',
+    var NowFormView = Backbone.View.extend({
+        initialize: function(options) {
+            this.controller = options.controller;
+        },
+
+        // Cache the template function.
+        template: _.template($('#now-template').html()),
+
+        render: function() {
+            this.$el.html(this.template());
+            return this;
+        }
+    });
+
+    // The view that contains all the controls and entry forms.
+    var ControllerView = Backbone.View.extend({
+        el: '#controller',
 
         events: {
             'click #addNow': 'showAddNow',
             'click #addFrom': 'addFrom'
         },
 
-        showAddNow: function() {
-            this.$el.animate({height: 'hide', opacity: 'hide'}, 'fast');
+        buttons: $('#buttons'),
+
+        // Generic method for showing a form.
+        showForm: function(formView) {
+            this.buttons.animate({opacity: 0}, 'fast');
+            var view = new formView({controller: this});
+            this.$el.append(view.render().$el.hide());
+            this.$el.animate({height: view.$el.height()});
+            this.buttons.hide();
+            view.$el.fadeIn();
             return;
-            // FIXME: Animate in a form view.
-            this.$el.show();
-            // Show the view for adding something now.
-            feedings.create({
-                time: Date.now(),
-                oz: 4,
-                ml: 125,
-                relativeSize: 'same'
-            });
+        },
+
+        // Show the view for adding something now.
+        showAddNow: function() {
+            this.showForm(NowFormView);
+            return;
+            //feedings.create({
+            //    time: Date.now(),
+            //    oz: 4,
+            //    ml: 125,
+            //    relativeSize: 'same'
+            //});
         },
 
         addFrom: function() {
             alert('Adding sometime!');
         }
     });
-    var buttonView = new ButtonView;
+    var controllerView = new ControllerView();
 
     // Kick things off and fetch the past feedings to display.
     feedings.on('reset', feedingsHistory.render, feedingsHistory);

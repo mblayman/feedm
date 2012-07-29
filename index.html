@@ -16,11 +16,12 @@
 
 <body>
     <h3 id='title'>Add a feeding</h3>
-    <div id='buttons'>
-        <a id='addNow' class='button' href='#'>Now</a> or
-        <a id='addFrom' class='button' href='#'>From another time</a>
+    <div id='controller'>
+        <div id='buttons'>
+            <a id='addNow' class='button' href='#'>Now</a> or
+            <a id='addFrom' class='button' href='#'>From another time</a>
+        </div>
     </div>
-    <div id='entryForm'></div>
     <div id='feedings'>
         <p id='no-feedings'>You have not added any feedings.</p>
         <ul id='history'></ul>
@@ -28,6 +29,9 @@
 <script type='text/template' id='feeding-template'>
 <span class='<%= relativeSize %>'>&nbsp;</span>
 <%= oz %>oz at <%= time %> <span class='date'><%= date %></span>
+</script>
+<script type='text/template' id='now-template'>
+<div class='form'>I am the now template.</div>
 </script>
 </body>
 </html>
