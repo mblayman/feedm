@@ -11,4 +11,5 @@ Some icons are from www.pixel-mixer.com.
 Hacking
 -------
 
-Node.js is used to help run the development tools and assumed to be installed.
+Node.js and Ruby are used to help run the development tools and are assumed to
+be installed.

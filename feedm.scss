@@ -1,0 +1,113 @@
+body {
+background: url('noise.png') #2C3D82;
+color: #efefef;
+font-family: 'Ubuntu', sans-serif;
+max-width: 16em;
+}
+
+a {
+color: #efefef;
+}
+
+#title {
+margin: .5em 0em;
+text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+#controller {
+padding: .5em;
+}
+
+.button {
+border: 1px solid #bbbbbb;
+padding: .5em;
+-moz-transition-duration: 0.2s;
+-moz-transition-transition: color background-color;
+// background-image: -moz-linear-gradient(#eeeeff, #ddddee);
+// FIXME Gradient transition with help http://jsfiddle.net/kizu/CPZv5/
+background-color: #eeeeff;
+background-image: url('noise.png');
+border-radius: 0.5em 0.5em 0.5em 0.5em;
+box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2), 0 -1px 0 rgba(0, 0, 0, 0.2) inset, 0 1px 0 0 rgba(255, 255, 255, 0.2) inset;
+color: #111133;
+text-align: center;
+text-decoration: none;
+text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.button:hover {
+background-color: #9999aa;
+color: #ffffff;
+}
+
+#no-feedings {
+display: none;
+}
+
+#feedings {
+border-radius: 15px;
+border: 1px solid #bbbbbb;
+box-shadow: 2px 2px 5px #222222;
+background-color: #EEEEFF;
+color: #111133;
+margin-top: 0.5em;
+margin-left: 0.5em;
+
+    p {
+        padding-left: 1em;
+    }
+}
+
+#history {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.feeding {
+border-bottom: 1px solid #d0d0d0;
+background: -moz-linear-gradient(top, #EEEEFF, #DDDDEE);
+padding: .5em 1em;
+}
+
+.feeding:first-child {
+border-radius: 15px 15px 0 0;
+}
+
+.feeding:last-child {
+border-bottom: none;
+border-radius: 0 0 15px 15px;
+}
+
+.date {
+color: #666688;
+}
+
+.bigger {
+background: url('up.png') no-repeat center;
+display: inline-block;
+width: 16px;
+}
+
+.smaller {
+background: url('down.png') no-repeat center;
+display: inline-block;
+width: 16px;
+}
+
+.same {
+display: inline-block;
+margin-top: 4px;
+width: 16px;
+}
+
+.form {
+background-color: #eeeeff;
+color: #111133;
+padding: 1em;
+}
+
+.form a {
+color: #111133;
+}
+
