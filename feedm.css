@@ -14,8 +14,8 @@ margin: .5em 0em;
 text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-#buttons {
-margin: 1em .5em;
+#controller {
+padding: .5em;
 }
 
 .button {
@@ -104,6 +104,10 @@ width: 16px;
 .form {
 background-color: #eeeeff;
 color: #111133;
-padding: 2em;
+padding: 1em;
+}
+
+.form a {
+color: #111133;
 }
 

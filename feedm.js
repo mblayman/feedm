@@ -122,12 +122,32 @@ $(function() {
             this.controller = options.controller;
         },
 
+        events: {
+            'click .add': 'add',
+            'click .cancel': 'cancel'
+        },
+
         // Cache the template function.
         template: _.template($('#now-template').html()),
 
         render: function() {
             this.$el.html(this.template());
             return this;
+        },
+
+        add: function() {
+            //feedings.create({
+            //    time: Date.now(),
+            //    oz: 4,
+            //    ml: 125,
+            //    relativeSize: 'same'
+            //});
+            alert('added!');
+            this.controller.showButtons();
+        },
+
+        cancel: function() {
+            this.controller.showButtons();
         }
     });
 
@@ -142,14 +162,36 @@ $(function() {
 
         buttons: $('#buttons'),
 
+        // When the buttons are hidden, this animates them back.
+        showButtons: function() {
+            var self = this;
+            var form = this.buttons.next();
+            form.fadeOut('fast', function() {
+                // The form is done so remove it from the DOM.
+                form.remove();
+                self.$el.animate({height: self.buttons.height()}, {
+                    complete: function() {
+                        self.buttons.fadeIn('fast');
+                    },
+                    duration: 'fast'
+                });
+            });
+        },
+
         // Generic method for showing a form.
         showForm: function(formView) {
-            this.buttons.animate({opacity: 0}, 'fast');
-            var view = new formView({controller: this});
-            this.$el.append(view.render().$el.hide());
-            this.$el.animate({height: view.$el.height()});
-            this.buttons.hide();
-            view.$el.fadeIn();
+            var self = this;
+            this.buttons.fadeOut('fast', function() {
+                var view = new formView({controller: self});
+                self.$el.append(view.render().$el.hide());
+                self.$el.animate({height: view.$el.height()}, {
+                    complete: function() {
+                        self.buttons.hide();
+                        view.$el.fadeIn('fast');
+                    },
+                    duration: 'fast'
+                });
+            });
             return;
         },
 
@@ -157,12 +199,6 @@ $(function() {
         showAddNow: function() {
             this.showForm(NowFormView);
             return;
-            //feedings.create({
-            //    time: Date.now(),
-            //    oz: 4,
-            //    ml: 125,
-            //    relativeSize: 'same'
-            //});
         },
 
         addFrom: function() {

@@ -31,7 +31,14 @@
 <%= oz %>oz at <%= time %> <span class='date'><%= date %></span>
 </script>
 <script type='text/template' id='now-template'>
-<div class='form'>I am the now template.</div>
+<div class='form'>
+<form>
+<input type='radio' name='amount' id='2oz' value='2' /><label for='2oz'>2oz</label><br />
+<input type='radio' name='amount' id='4oz' value='4' /><label for='4oz'>4oz</label><br />
+</form>
+<a class='add' href='#'>Add</a>
+<a class='cancel' href='#'>Cancel</a>
+</div>
 </script>
 </body>
 </html>
