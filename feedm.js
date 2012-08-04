@@ -1,21 +1,20 @@
 requirejs.config({
     paths: {
-        backbone: 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min',
-        'backbone.localStorage': 'backbone.localStorage-min',
-        jquery: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min',
-        underscore: 'http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min'
+        jquery: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min'
     },
     shim: {
         backbone: {
             deps: ['jquery', 'underscore'],
-            exports: 'Backbone'
+            exports: function($) {
+                // Backbone is referencing $ directly in setElement and this is
+                // blowing up during optimization. Therefore, set jQuery.
+                Backbone.setDomLibrary($);
+                return Backbone;
+            }
         },
         'backbone.localStorage': {
             deps: ['backbone'],
             exports: 'Backbone.LocalStorage'
-        },
-        jquery: {
-            exports: '$'
         },
         underscore: {
             exports: '_'
@@ -26,7 +25,7 @@ requirejs.config({
 require([
     'models/feedings',
     'views/controller',
-    'views/feedings-history',
+    'views/feedings-history'
     ],
     function(Feedings, ControllerView, FeedingsHistory) {
 
