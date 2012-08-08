@@ -16,7 +16,7 @@ text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 #controller {
-padding: .5em;
+padding: .5em .5em .5em 0;
 }
 
 .button {
@@ -61,14 +61,17 @@ padding: .5em;
 display: none;
 }
 
-#feedings {
+@mixin content-box {
     border-radius: 15px;
     border: 1px solid #bbbbbb;
     box-shadow: 2px 2px 5px #222222;
     background-color: #EEEEFF;
     color: #111133;
     margin-top: 0.5em;
-    margin-left: 0.5em;
+}
+
+#feedings {
+    @include content-box;
 
     p {
         padding-left: 1em;
@@ -119,9 +122,8 @@ width: 16px;
 }
 
 .form {
-background-color: #eeeeff;
-color: #111133;
-padding: 1em;
+    @include content-box;
+    padding: 1em;
 }
 
 .form a {
