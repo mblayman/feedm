@@ -1,6 +1,6 @@
 // http://colorschemedesigner.com/#3R32mo4nZw0w0 for colors.
 body {
-background: url('noise.png') #2C3D82;
+background: url('img/noise.png') #2C3D82;
 color: #efefef;
 font-family: 'Ubuntu', sans-serif;
 max-width: 16em;
@@ -101,13 +101,13 @@ color: #666688;
 }
 
 .bigger {
-background: url('up.png') no-repeat center;
+background: url('img/up.png') no-repeat center;
 display: inline-block;
 width: 16px;
 }
 
 .smaller {
-background: url('down.png') no-repeat center;
+background: url('img/down.png') no-repeat center;
 display: inline-block;
 width: 16px;
 }

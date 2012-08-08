@@ -1,6 +1,10 @@
 requirejs.config({
     paths: {
-        jquery: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min'
+        backbone: 'vendor/backbone',
+        'backbone.localStorage': 'vendor/backbone.localStorage',
+        jquery: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min',
+        text: 'vendor/text',
+        underscore: 'vendor/underscore'
     },
     shim: {
         backbone: {

@@ -1,5 +1,5 @@
 body {
-  background: url("noise.png") #2c3d82;
+  background: url("img/noise.png") #2c3d82;
   color: #efefef;
   font-family: 'Ubuntu', sans-serif;
   max-width: 16em; }
@@ -78,12 +78,12 @@ a {
   color: #666688; }
 
 .bigger {
-  background: url("up.png") no-repeat center;
+  background: url("img/up.png") no-repeat center;
   display: inline-block;
   width: 16px; }
 
 .smaller {
-  background: url("down.png") no-repeat center;
+  background: url("img/down.png") no-repeat center;
   display: inline-block;
   width: 16px; }
 
