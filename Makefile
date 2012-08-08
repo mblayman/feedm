@@ -12,12 +12,12 @@ hint: dev
 	$(JSHINT) models/*.js views/*.js *.js
 
 dev: rjs
-	@test -e $(JSHINT) || npm install jshint
 	@which sass &> /dev/null || gem install sass --user-install
+	@test -e $(JSHINT) || npm install jshint
 
 rjs:
 	@test -e $(RJS) || npm install requirejs
 
-prod:
+prod: rjs
 	$(RJS) -o app.build.js
 
