@@ -1,5 +1,5 @@
 body {
-  background: url("img/noise.png") #dedede;
+  background: url("img/noise.png") #e3e3e3;
   color: #192249;
   font-family: 'Ubuntu', sans-serif;
   max-width: 16em; }
@@ -102,7 +102,7 @@ a {
   margin-top: 0.25em;
   background-color: #30407e;
   border-color: #3f58bb;
-  color: #dedede;
+  color: #e3e3e3;
   padding: 0.5em; }
   .form p {
     margin: 0.2em; }

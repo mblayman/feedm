@@ -14,7 +14,8 @@ define([
             'click #addFrom': 'addFrom'
         },
 
-        initialize: function() {
+        initialize: function(options) {
+            this.feedings = options.feedings;
             this.buttons = $('#buttons');
         },
 
@@ -38,7 +39,10 @@ define([
         showForm: function(formView) {
             var self = this;
             this.buttons.fadeOut('fast', function() {
-                var view = new formView({controller: self});
+                var view = new formView({
+                    controller: self,
+                    feedings: self.feedings
+                });
                 self.$el.append(view.render().$el.hide());
                 self.$el.animate({height: view.$el.height()}, {
                     complete: function() {

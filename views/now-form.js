@@ -2,13 +2,14 @@ define([
     'backbone',
     'jquery',
     'underscore',
+    'models/preferences',
     'text!templates/now-form.html'
     ],
-    function(Backbone, $, _, template) {
+    function(Backbone, $, _, Preferences, template) {
     var NowFormView = Backbone.View.extend({
         initialize: function(options) {
-            // XXX: Should use a preferences object to get amounts and unit.
             this.controller = options.controller;
+            this.feedings = options.feedings;
         },
 
         events: {
@@ -20,21 +21,21 @@ define([
         template: _.template(template),
 
         render: function() {
-            var amounts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
             this.$el.html(this.template({
-                amounts: amounts
+                amounts: Preferences.amounts()
             }));
             return this;
         },
 
-        add: function() {
-            //feedings.create({
-            //    time: Date.now(),
-            //    oz: 4,
-            //    ml: 125,
-            //    relativeSize: 'same'
-            //});
-            alert('added!');
+        add: function(ev) {
+            // Pull the data and pass along the unit type.
+            var amount = parseInt($(ev.currentTarget).data().amount, 10);
+            feeding = {
+                time: Date.now()
+            };
+            feeding[Preferences.unit()] = amount;
+            this.feedings.addOne(feeding, Preferences.unit());
+
             this.controller.showButtons();
         },
 
