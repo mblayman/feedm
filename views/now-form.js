@@ -7,6 +7,7 @@ define([
     function(Backbone, $, _, template) {
     var NowFormView = Backbone.View.extend({
         initialize: function(options) {
+            // XXX: Should use a preferences object to get amounts and unit.
             this.controller = options.controller;
         },
 
@@ -19,7 +20,10 @@ define([
         template: _.template(template),
 
         render: function() {
-            this.$el.html(this.template());
+            var amounts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            this.$el.html(this.template({
+                amounts: amounts
+            }));
             return this;
         },
 

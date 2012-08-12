@@ -1,7 +1,10 @@
 // http://colorschemedesigner.com/#3R32mo4nZw0w0 for colors.
+$blue: #2C3D82;
+$light-grey: #dedede;
+
 body {
-background: url('img/noise.png') #2C3D82;
-color: #efefef;
+background: url('img/noise.png') $light-grey;
+color: darken($blue, 15%);
 font-family: 'Ubuntu', sans-serif;
 max-width: 16em;
 }
@@ -11,22 +14,24 @@ color: #efefef;
 }
 
 #title {
-margin: .5em 0em;
-text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+margin: .5em 0em 0em 0em;
+text-shadow: 1px 1px 0 rgba(0, 0, 64, 0.3);
 }
 
 #controller {
-padding: .5em .5em .5em 0;
+padding: .5em 0;
 }
 
 .button {
+    margin: 0.25em 0;
+    width: 100%;
     position: relative;
     z-index: 9;
     display: inline-block;
 
     border: 1px solid #bbbbbb;
     border-radius: 0.5em 0.5em 0.5em 0.5em;
-    padding: .5em;
+    padding: .3em 0;
     background-image: -moz-linear-gradient(#eeeeff, #aaaacc);
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2), 0 -1px 0 rgba(0, 0, 0, 0.2) inset, 0 1px 0 0 rgba(255, 255, 255, 0.2) inset;
     color: #111133;
@@ -64,10 +69,10 @@ display: none;
 @mixin content-box {
     border-radius: 15px;
     border: 1px solid #bbbbbb;
-    box-shadow: 2px 2px 5px #222222;
+    box-shadow: 2px 2px 10px #999999;
     background-color: #EEEEFF;
     color: #111133;
-    margin-top: 0.5em;
+    margin-top: 0.25em;
 }
 
 #feedings {
@@ -123,7 +128,14 @@ width: 16px;
 
 .form {
     @include content-box;
-    padding: 1em;
+    background-color: desaturate($blue, 5%);
+    border-color: lighten($blue, 15%);
+    color: $light-grey;
+    padding: 0.5em;
+
+    p {
+        margin: 0.2em;
+    }
 }
 
 .form a {
