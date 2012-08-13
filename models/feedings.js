@@ -19,19 +19,36 @@ define(['backbone', 'backbone.localStorage'], function(Backbone) {
                 feeding.oz = 4;
             }
 
-            // Determine what the relative size should be.
-            if (!this.isEmpty()) {
+            // Add a model to the collection to grab the index after the save.
+            var model = new Feeding(feeding);
+            this.add(model, {silent: true});
+            model.save();
+
+            // Check out the previous to determine relative size.
+            var previous = this.at(this.indexOf(model) - 1);
+            if (previous !== -1) {
                 // FIXME: When the feeding is inserted between two other
                 // feedings, the relative size of the later feeding needs to be
                 // updated.
-                // TODO: Find the previous feeding to determine relative size.
-                feeding.relativeSize = 'bigger';
+
+                // It doesn't matter if oz or ml is compared so just pick one.
+                if (model.get('oz') > previous.get('oz')) {
+                    model.set('relativeSize', 'bigger');
+                }
+                else if (model.get('oz') < previous.get('oz')) {
+                    model.set('relativeSize', 'smaller');
+                }
+                else {
+                    model.set('relativeSize', 'same');
+                }
             }
             else {
-                feeding.relativeSize = 'same';
+                model.set('relativeSize', 'same');
             }
 
-            this.create(feeding);
+            // Now that all properties are set, save and tell the views.
+            model.save();
+            this.trigger('add', model);
         }
     });
 
