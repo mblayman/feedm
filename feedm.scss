@@ -6,16 +6,44 @@ body {
 background: url('img/noise.png') $light-grey;
 color: darken($blue, 15%);
 font-family: 'Ubuntu', sans-serif;
-max-width: 16em;
+margin: 0;
+max-width: 17em;
 }
 
 a {
 color: #efefef;
 }
 
+#header {
+    background-color: $blue;
+    border-bottom: 2px solid lighten($blue, 40%);
+    border-radius: 0 0 0.5em 0.5em;
+    color: $light-grey;
+    padding: 0.25em;
+    padding-left: 0.5em;
+
+    h2 {
+        margin: 0;
+    }
+}
+
+#content {
+    padding: 0 0.5em;
+}
+
+#footer {
+    background-color: $blue;
+    border-top: 2px solid lighten($blue, 40%);
+    border-radius: 0.5em 0.5em 0 0;
+    color: $light-grey;
+    margin-top: 1em;
+    padding: 0.25em;
+    font-size: smaller;
+    text-align: center;
+}
+
 #title {
 margin: .5em 0em 0em 0em;
-text-shadow: 1px 1px 0 rgba(0, 0, 64, 0.3);
 }
 
 #controller {
