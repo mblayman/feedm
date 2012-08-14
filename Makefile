@@ -6,7 +6,7 @@ go:
 	python -m SimpleHTTPServer 8000
 
 sass: dev
-	@PATH="$(PATH)" sass --watch feedm.scss:feedm.css
+	@PATH="$(PATH)" sass --watch feedm.scss:feedm.css --style compressed
 
 hint: dev
 	$(JSHINT) models/*.js views/*.js *.js

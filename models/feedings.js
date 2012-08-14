@@ -19,10 +19,9 @@ define(['backbone', 'backbone.localStorage'], function(Backbone) {
                 feeding.oz = 4;
             }
 
-            // Add a model to the collection to grab the index after the save.
+            // Add a model to the collection to grab the index.
             var model = new Feeding(feeding);
             this.add(model, {silent: true});
-            model.save();
 
             // Check out the previous to determine relative size.
             var previous = this.at(this.indexOf(model) - 1);
