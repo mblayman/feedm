@@ -2,7 +2,7 @@
 <p>The baby ate:</p>
 <% _.each(amounts, function(amount) { %>
 <a class='add button' href='#' data-amount='<%= amount %>'>
-<span class='button-helper'></span><%= amount %>oz</a><br />
+<%= amount %>oz</a><br />
 <% }); %>
 <a class='cancel button' href='#'><span class='button-helper'></span>Cancel</a>
 </div>
