@@ -2,7 +2,7 @@ requirejs.config({
     paths: {
         backbone: 'vendor/backbone',
         'backbone.localStorage': 'vendor/backbone.localStorage',
-        jquery: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min',
+        jquery: 'vendor/jquery',
         text: 'vendor/text',
         underscore: 'vendor/underscore'
     },
