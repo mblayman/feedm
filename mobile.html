@@ -7,18 +7,65 @@
   <script src="jquery.mobile-1.3.0.js"></script>
 </head>
 <body>
-<div data-role="page">
-  <div data-role="header">
+<div data-role='page' id='main'>
+  <div data-role='header'>
     <h1>Feedm</h1>
+    <a href='#settings' data-icon='bars' data-iconpos='notext'
+      data-transition='slide' class='ui-btn-right'>Settings</a>
   </div>
   <div data-role="content">
-    <a href='#' data-role='button' data-theme='b' data-icon='arrow-r'
-      data-iconpos='right'>Add a Feeding Now</a>
+    <a href='#add_feeding' data-role='button' data-theme='b' data-icon='arrow-r'
+      data-iconpos='right' data-transition='slide'>Add a Feeding Now</a>
     <h3>Past Feedings</h3>
     <ul data-role='listview' data-inset='true'>
-      <li data-icon='arrow-d'><a href='#'>4oz at 7:42pm, 2013-03-10</a></li>
-      <li data-icon='false'><a href='#'>5oz at 4:42pm, 2013-03-10</a></li>
+      <li data-icon='arrow-d'><a href='#'>4 oz at 7:42pm, 2013-03-10</a></li>
+      <li data-icon='false'><a href='#'>5 oz at 4:42pm, 2013-03-10</a></li>
     </ul>
+  </div>
+</div>
+<div data-role='page' id='add_feeding' data-prefetch='true'
+  data-add-back-btn='true'>
+  <div data-role='header'>
+    <h1>Add a Feeding</h1>
+  </div>
+  <div data-role="content">
+    <ul data-role='listview' data-inset='true'>
+      <li data-icon='false'><a href='#'>1 oz</a></li>
+      <li data-icon='false'><a href='#'>2 oz</a></li>
+      <li data-icon='false'><a href='#'>3 oz</a></li>
+      <li data-icon='false'><a href='#'>4 oz</a></li>
+      <li data-icon='false'><a href='#'>5 oz</a></li>
+      <li data-icon='false'><a href='#'>6 oz</a></li>
+      <li data-icon='false'><a href='#'>5 oz</a></li>
+      <li data-icon='false'><a href='#'>7 oz</a></li>
+      <li data-icon='false'><a href='#'>8 oz</a></li>
+    </ul>
+  </div>
+</div>
+<div data-role='page' id='settings' data-add-back-btn='true'>
+  <div data-role='header'>
+    <h1>Settings</h1>
+  </div>
+  <div data-role="content">
+    <form>
+      <fieldset data-role='controlgroup' data-type='horizontal'>
+        <legend>Amount in:</legend>
+        <input type='radio' name='unit' id='oz' value='oz' checked='checked'>
+        <label for='oz'>English (oz)</label>
+        <input type='radio' name='unit' id='ml'>
+        <label for='ml'>Metric (ml)</label>
+      </fieldset>
+      <div data-role="fieldcontain">
+        <label for="language">Language:</label>
+        <select name="language" id="language">
+          <option value="en">English</option>
+          <option value="fr">French</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div data-role='footer' data-position='fixed'>
+    <h1>2013 &copy; Matt Layman</h1>
   </div>
 </div>
 </body>
