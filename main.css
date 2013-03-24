@@ -1,0 +1,8 @@
+/* Prevents flash of unstyled content as jqm loads */
+body {
+    background: black;
+    /* For some reason, this causes a slight jitter in the jQM slide
+       transition, but without it, the flash of unstyled content occurs. */
+    display: none;
+}
+
