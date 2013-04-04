@@ -1,8 +1,5 @@
-<div class='form'>
-<p>The baby ate:</p>
 <% _.each(amounts, function(amount) { %>
-<a class='add button' href='#' data-amount='<%= amount %>'>
-<%= amount %>oz</a><br />
+<li data-icon='false'>
+  <a class='add' href='#' data-amount='<%= amount %>'><%= amount %> oz</a>
+</li>
 <% }); %>
-<a class='cancel button' href='#'><span class='button-helper'></span>Cancel</a>
-</div>

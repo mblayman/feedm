@@ -11,11 +11,13 @@ requirejs.config({
     shim: {
         backbone: {
             deps: ['jquery', 'underscore', 'json2'],
-            exports: function($) {
+            exports: 'Backbone',
+            init: function($) {
                 // Backbone is referencing $ directly in setElement and this is
                 // blowing up during optimization. Therefore, set jQuery.
-                Backbone.setDomLibrary($);
-                return Backbone;
+                // FIXME: With the new RequireJS, exports does not work like
+                // it used to. I don't know if setDomLibrary is still needed.
+                //Backbone.setDomLibrary($);
             }
         },
         'backbone.localStorage': {
@@ -33,9 +35,13 @@ requirejs.config({
 
 require([
     'jquery',
+    'models/feedings',
+    'views/now-form',
     'jquery.mobile'
     ],
-    function($) {
+    function($, Feedings, NowForm) {
+
+    var feedings = new Feedings();
 
     // Views reference DOM elements and should only be instantiated onReady.
     $(function() {
@@ -43,6 +49,19 @@ require([
         // when jQuery is ready.
         $('body').show();
 
-        // TODO: Finally time to do something.
+        var nowForm = new NowForm({feedings: feedings});
+        nowForm.render();
+
+        // 1. Render an li.
+        // 2. Prepend to the list.
+        // 3. Call $('feedings').listview('refresh')
+        // 4. Do this from another page if it looks awkward.
+        // Sample
+//        $('#feedings').prepend($('<li/>', {    //here appending `<li>`
+//            'data-icon': 'false'
+//        }).append($('<a/>', {    //here appending `<a>` into `<li>`
+//            'href': 'test.html',
+//            'text': 'hello'
+//        }))).listview('refresh');
     });
 });

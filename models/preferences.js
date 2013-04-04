@@ -7,7 +7,7 @@ define([
     // Track the user's preferences. This is sort of abusing Backbone
     // localStorage because it will only ever be fetching one item.
     var PreferencesContainer = Backbone.Collection.extend({
-        localStorage: new Backbone.LocalStorage('feedmPreferences')
+        localStorage: new Backbone.LocalStorage('Feedm.Preferences')
     });
     var preferencesContainer = new PreferencesContainer();
 

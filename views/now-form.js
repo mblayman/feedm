@@ -3,18 +3,19 @@ define([
     'jquery',
     'underscore',
     'models/preferences',
-    'text!templates/now-form.html'
+    'text!templates/now-form.html',
+    'jquery.mobile'
     ],
-    function(Backbone, $, _, Preferences, template) {
-    var NowFormView = Backbone.View.extend({
+function(Backbone, $, _, Preferences, template) {
+    var NowForm = Backbone.View.extend({
+        el: 'ul#NowForm',
+
         initialize: function(options) {
-            this.controller = options.controller;
             this.feedings = options.feedings;
         },
 
         events: {
             'click .add': 'add',
-            'click .cancel': 'cancel'
         },
 
         // Cache the template function.
@@ -22,27 +23,23 @@ define([
 
         render: function() {
             this.$el.html(this.template({
-                amounts: Preferences.amounts()
+                //amounts: Preferences.amounts()
+                amounts: [1, 2, 3, 4, 5, 6, 7, 8]
             }));
             return this;
         },
 
         add: function(ev) {
+            alert('You added a feeding');
             // Pull the data and pass along the unit type.
-            var amount = parseInt($(ev.currentTarget).data().amount, 10);
-            feeding = {
-                time: Date.now()
-            };
-            feeding[Preferences.unit()] = amount;
-            this.feedings.addOne(feeding, Preferences.unit());
-
-            this.controller.showButtons();
-        },
-
-        cancel: function() {
-            this.controller.showButtons();
+//            var amount = parseInt($(ev.currentTarget).data().amount, 10);
+//            feeding = {
+//                time: Date.now()
+//            };
+//            feeding[Preferences.unit()] = amount;
+//            this.feedings.addOne(feeding, Preferences.unit());
         }
     });
 
-    return NowFormView;
+    return NowForm;
 });

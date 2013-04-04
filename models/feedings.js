@@ -4,7 +4,7 @@ define(['backbone', 'backbone.localStorage'], function(Backbone) {
 
     var Feedings = Backbone.Collection.extend({
         model: Feeding,
-        localStorage: new Backbone.LocalStorage('Feedings'),
+        localStorage: new Backbone.LocalStorage('Feedm.Feedings'),
 
         // Add a new feeding. The feeding object should already include the
         // time and one unit.
@@ -42,6 +42,7 @@ define(['backbone', 'backbone.localStorage'], function(Backbone) {
                 }
             }
             else {
+                // This must be the first feeding.
                 model.set('relativeSize', 'same');
             }
 

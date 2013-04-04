@@ -16,16 +16,17 @@
   <div data-role="content">
     <a href='#add_feeding' data-role='button' data-theme='b' data-icon='arrow-r'
       data-iconpos='right' data-transition='slide'>Add a Feeding Now</a>
-    <h3>Past Feedings</h3>
     <ul data-role='listview' data-inset='true'>
       <li data-icon='arrow-d'><a href='#'>4 oz at 7:42pm, 2013-03-10</a></li>
       <li data-icon='false'><a href='#'>5 oz at 4:42pm, 2013-03-10</a></li>
     </ul>
+    <!--
     <br>
     <a href='#history' data-role='button' data-theme='b'
        data-transition='slide'>Show More Feedings</a>
     <a href='#manual' data-role='button' data-theme='b'
        data-transition='slide'>Forgot To Add?</a>
+    -->
   </div>
 </div>
 <div data-role='page' id='add_feeding' data-prefetch='true'
@@ -34,17 +35,8 @@
     <h1>Add a Feeding</h1>
   </div>
   <div data-role="content">
-    <ul data-role='listview' data-inset='true'>
-      <li data-icon='false'><a href='#'>1 oz</a></li>
-      <li data-icon='false'><a href='#'>2 oz</a></li>
-      <li data-icon='false'><a href='#'>3 oz</a></li>
-      <li data-icon='false'><a href='#'>4 oz</a></li>
-      <li data-icon='false'><a href='#'>5 oz</a></li>
-      <li data-icon='false'><a href='#'>6 oz</a></li>
-      <li data-icon='false'><a href='#'>5 oz</a></li>
-      <li data-icon='false'><a href='#'>7 oz</a></li>
-      <li data-icon='false'><a href='#'>8 oz</a></li>
-    </ul>
+    <h4>The baby ate</h4>
+    <ul id='NowForm' data-role='listview' data-inset='true'></ul>
   </div>
 </div>
 <div data-role='page' id='settings' data-add-back-btn='true'>
@@ -60,6 +52,7 @@
         <input type='radio' name='unit' id='ml'>
         <label for='ml'>Metric (ml)</label>
       </fieldset>
+      <!--
       <div data-role="fieldcontain">
         <label for="language">Language:</label>
         <select name="language" id="language">
@@ -67,6 +60,7 @@
           <option value="fr">French</option>
         </select>
       </div>
+      -->
     </form>
   </div>
   <div data-role='footer' data-position='fixed'>
