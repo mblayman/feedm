@@ -3,7 +3,8 @@ define([
     'jquery',
     'underscore',
     'views/feeding'],
-    function(Backbone, $, _, FeedingView) {
+
+function(Backbone, $, _, FeedingView) {
 
     var FeedingsHistory = Backbone.View.extend({
         el: 'ul#history',
@@ -37,3 +38,4 @@ define([
 
     return FeedingsHistory;
 });
+

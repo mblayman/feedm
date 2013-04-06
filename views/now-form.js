@@ -6,6 +6,7 @@ define([
     'text!templates/now-form.html',
     'jquery.mobile'
     ],
+
 function(Backbone, $, _, Preferences, template) {
     var NowForm = Backbone.View.extend({
         el: 'ul#NowForm',
@@ -23,23 +24,28 @@ function(Backbone, $, _, Preferences, template) {
 
         render: function() {
             this.$el.html(this.template({
-                //amounts: Preferences.amounts()
-                amounts: [1, 2, 3, 4, 5, 6, 7, 8]
+                amounts: Preferences.amounts()
             }));
-            return this;
         },
 
         add: function(ev) {
-            alert('You added a feeding');
+            // Create a feeding from right now.
+            feeding = {
+                time: Date.now()
+            };
+
             // Pull the data and pass along the unit type.
-//            var amount = parseInt($(ev.currentTarget).data().amount, 10);
-//            feeding = {
-//                time: Date.now()
-//            };
-//            feeding[Preferences.unit()] = amount;
-//            this.feedings.addOne(feeding, Preferences.unit());
+            var amount = parseInt($(ev.currentTarget).data().amount, 10);
+            feeding[Preferences.unit()] = amount;
+
+            // TODO: Uncomment when ready to connect to the real deal.
+            //this.feedings.addOne(feeding, Preferences.unit());
+
+            // Go back to the main screen.
+            history.back();
         }
     });
 
     return NowForm;
 });
+

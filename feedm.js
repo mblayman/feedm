@@ -32,7 +32,8 @@ require([
     'views/controller',
     'views/feedings-history'
     ],
-    function($, Feedings, ControllerView, FeedingsHistory) {
+
+function($, Feedings, ControllerView, FeedingsHistory) {
 
     // Views reference DOM elements and should only be instantiated onReady.
     $(function() {
