@@ -2,7 +2,8 @@ define([
     'backbone',
     'jquery',
     'underscore',
-    'views/feeding'],
+    'views/feeding'
+    ],
 
 function(Backbone, $, _, FeedingView) {
 
@@ -14,25 +15,27 @@ function(Backbone, $, _, FeedingView) {
         },
 
         render: function() {
-            if (this.collection.isEmpty()) {
-                $('#no-feedings').show();
-                return this;
+            if (!this.collection.isEmpty()) {
+                var that = this;
+                // Show about a day's worth of feedings, ~10.
+                var someFeedings = this.collection.last(10);
+                _.each(someFeedings, function(feeding) {
+                    that.addFeeding(feeding, 0);
+                });
             }
-
-            var self = this;
-            // Show about a day's worth of feedings, ~10.
-            var someFeedings = this.collection.last(10);
-            _.each(someFeedings, function(feeding) {
-                self.addFeeding(feeding, 0);
-            });
-
-            return this;
+            else {
+                // FIXME: Make sure this works.
+                $('#no-feedings').show();
+            }
         },
 
         // Add a feeding to the view.
         addFeeding: function(feeding, duration) {
             var view = new FeedingView({model: feeding});
-            this.$el.prepend(view.render().$el.hide().fadeIn(duration));
+            // TODO: Should there be animation?
+//            this.$el.prepend(view.render().$el.hide().fadeIn(duration));
+            this.$el.prepend(view.render().$el.hide().fadeIn(duration)).
+                listview('refresh');
         }
     });
 

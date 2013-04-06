@@ -38,8 +38,7 @@ function(Backbone, $, _, Preferences, template) {
             var amount = parseInt($(ev.currentTarget).data().amount, 10);
             feeding[Preferences.unit()] = amount;
 
-            // TODO: Uncomment when ready to connect to the real deal.
-            //this.feedings.addOne(feeding, Preferences.unit());
+            this.feedings.addOne(feeding, Preferences.unit());
 
             // Go back to the main screen.
             history.back();

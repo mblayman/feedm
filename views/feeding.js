@@ -5,11 +5,15 @@ define([
     'date',
     'text!templates/feeding.html'
     ],
-    function(Backbone, $, _, Date, template) {
+
+function(Backbone, $, _, Date, template) {
 
     var FeedingView = Backbone.View.extend({
         tagName: 'li',
-        className: 'feeding',
+
+        attributes: {
+            'data-icon': 'false'
+        },
 
         // Cache the template function.
         template: _.template(template),
@@ -18,6 +22,7 @@ define([
             var model = this.model.toJSON();
             model.date = Date.date(model.time);
             model.time = Date.time(model.time);
+// TODO: set the icon attribute on the element.
             this.$el.html(this.template(model));
             return this;
         }

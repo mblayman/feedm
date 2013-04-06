@@ -36,18 +36,18 @@ requirejs.config({
 require([
     'jquery',
     'models/feedings',
+    'views/feedings-history',
     'views/now-form',
     'jquery.mobile'
     ],
-    function($, Feedings, NowForm) {
+
+function($, Feedings, FeedingsHistory, NowForm) {
 
     var feedings = new Feedings();
 
     // Views reference DOM elements and should only be instantiated onReady.
     $(function() {
-        // Prevent flash of unstyled content by hiding the body then showing
-        // when jQuery is ready.
-        $('body').show();
+        // TODO: Do I need a loading animation?
 
         var nowForm = new NowForm({feedings: feedings});
         nowForm.render();
@@ -63,5 +63,15 @@ require([
 //            'href': 'test.html',
 //            'text': 'hello'
 //        }))).listview('refresh');
+
+        // Kick things off and fetch the past feedings to display.
+        var feedingsHistory = new FeedingsHistory({collection: feedings});
+        feedings.on('reset', feedingsHistory.render, feedingsHistory);
+        feedings.fetch();
+
+        // Prevent flash of unstyled content by hiding the body then showing
+        // when jQuery is ready.
+        $('body').show();
+
     });
 });

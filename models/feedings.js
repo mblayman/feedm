@@ -9,6 +9,10 @@ define(['backbone', 'backbone.localStorage'], function(Backbone) {
         // Add a new feeding. The feeding object should already include the
         // time and one unit.
         addOne: function(feeding, unit) {
+            var index = 0,
+                model,
+                previous;
+
             // Use the unit to record the equivalent in the opposite unit.
             if (unit === 'oz') {
                 // FIXME: create a conversion function.
@@ -20,12 +24,13 @@ define(['backbone', 'backbone.localStorage'], function(Backbone) {
             }
 
             // Add a model to the collection to grab the index.
-            var model = new Feeding(feeding);
+            model = new Feeding(feeding);
             this.add(model, {silent: true});
 
             // Check out the previous to determine relative size.
-            var previous = this.at(this.indexOf(model) - 1);
-            if (previous !== -1) {
+            index = this.indexOf(model);
+            if (index > 0) {
+                previous = this.at(index - 1);
                 // FIXME: When the feeding is inserted between two other
                 // feedings, the relative size of the later feeding needs to be
                 // updated.
