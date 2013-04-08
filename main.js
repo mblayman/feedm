@@ -47,27 +47,13 @@ function($, Feedings, FeedingsHistory, NowForm) {
 
     // Views reference DOM elements and should only be instantiated onReady.
     $(function() {
-        // TODO: Do I need a loading animation?
-
         var nowForm = new NowForm({feedings: feedings});
         nowForm.render();
-
-        // 1. Render an li.
-        // 2. Prepend to the list.
-        // 3. Call $('feedings').listview('refresh')
-        // 4. Do this from another page if it looks awkward.
-        // Sample
-//        $('#feedings').prepend($('<li/>', {    //here appending `<li>`
-//            'data-icon': 'false'
-//        }).append($('<a/>', {    //here appending `<a>` into `<li>`
-//            'href': 'test.html',
-//            'text': 'hello'
-//        }))).listview('refresh');
 
         // Kick things off and fetch the past feedings to display.
         var feedingsHistory = new FeedingsHistory({collection: feedings});
         feedings.on('reset', feedingsHistory.render, feedingsHistory);
-        feedings.fetch();
+        feedings.fetch({reset: true});
 
         // Prevent flash of unstyled content by hiding the body then showing
         // when jQuery is ready.

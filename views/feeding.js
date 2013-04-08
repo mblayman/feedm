@@ -22,7 +22,14 @@ function(Backbone, $, _, Date, template) {
             var model = this.model.toJSON();
             model.date = Date.date(model.time);
             model.time = Date.time(model.time);
-// TODO: set the icon attribute on the element.
+
+            if (this.model.get('relativeSize') === 'bigger') {
+                this.$el.data('icon', 'arrow-u');
+            }
+            else if (this.model.get('relativeSize') === 'smaller') {
+                this.$el.data('icon', 'arrow-d');
+            }
+
             this.$el.html(this.template(model));
             return this;
         }
