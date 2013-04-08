@@ -8,17 +8,17 @@ define(['backbone', 'backbone.localStorage'], function(Backbone) {
 
         // Add a new feeding. The feeding object should already include the
         // time and one unit.
-        addOne: function(feeding, unit) {
+        addOne: function(feeding) {
             var index = 0,
                 model,
                 previous;
 
             // Use the unit to record the equivalent in the opposite unit.
-            if (unit === 'oz') {
+            if (feeding['oz']) {
                 // FIXME: create a conversion function.
                 feeding.ml = 100;
             }
-            else if (unit === 'ml') {
+            else if (feeding['ml']) {
                 // FIXME: create a conversion function.
                 feeding.oz = 4;
             }
