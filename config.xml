@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+    xmlns:gap = "http://phonegap.com/ns/1.0"
+    id = "com.mblayman.feedm"
+    versionCode = "1"
+    version = "0.0.2">
+    <name>Feedm</name>
+    <description>An app for tracking baby feedings</description>
+    <author>Matt Layman</author>
+</widget>
