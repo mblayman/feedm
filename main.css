@@ -10,3 +10,7 @@ body {
     display: none;
 }
 
+.ui-page {
+    background: url('images/noise.png') #e9e9e9;
+}
+
