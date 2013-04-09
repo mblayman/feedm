@@ -1,6 +1,7 @@
 ({
-    mainConfigFile: 'feedm.js',
-    name: 'feedm',
-    out: 'feedm-prod.js',
-    optimizeCss: 'none'
+    mainConfigFile: 'main.js',
+    dir: 'production',
+    modules: [{
+        name: 'main'
+    }]
 })
