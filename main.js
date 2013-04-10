@@ -2,6 +2,7 @@ requirejs.config({
     paths: {
         backbone: 'vendor/backbone-1.0.0',
         'backbone.localStorage': 'vendor/backbone.localStorage-1.1.0',
+        domReady: 'vendor/domReady',
         jquery: 'vendor/jquery-1.9.1',
         'jquery.mobile': 'vendor/jquery.mobile-1.3.0',
         json2: 'vendor/json2',
@@ -34,6 +35,7 @@ requirejs.config({
 });
 
 require([
+    'domReady',
     'jquery',
     'models/feedings',
     'views/feedings-history',
@@ -41,23 +43,33 @@ require([
     'jquery.mobile'
     ],
 
-function($, Feedings, FeedingsHistory, NowForm) {
-
-    var feedings = new Feedings();
+function(domReady, $, Feedings, FeedingsHistory, NowForm) {
 
     // Views reference DOM elements and should only be instantiated onReady.
-    $(function() {
-        var nowForm = new NowForm({feedings: feedings});
-        nowForm.render();
+    domReady(function() {
 
-        // Kick things off and fetch the past feedings to display.
-        var feedingsHistory = new FeedingsHistory({collection: feedings});
-        feedings.on('reset', feedingsHistory.render, feedingsHistory);
-        feedings.fetch({reset: true});
+        var onDeviceReady = function() {
+            var feedings = new Feedings();
 
-        // Prevent flash of unstyled content by hiding the body then showing
-        // when jQuery is ready.
-        $('body').show();
+            var nowForm = new NowForm({feedings: feedings});
+            nowForm.render();
 
+            // Kick things off and fetch the past feedings to display.
+            var feedingsHistory = new FeedingsHistory({collection: feedings});
+            feedings.on('reset', feedingsHistory.render, feedingsHistory);
+            feedings.fetch({reset: true});
+
+            // Prevent flash of unstyled content by hiding the body then
+            // showing when jQuery is ready.
+            $('body').show();
+        };
+
+        if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {
+            // This is running on a device so waiting for deviceready event
+            document.addEventListener('deviceready', onDeviceReady, false);
+        } else {
+            // On desktop don't have to wait for anything
+            onDeviceReady(true);
+        }
     });
 });
