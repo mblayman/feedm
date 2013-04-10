@@ -48,7 +48,10 @@ function(domReady, $, Feedings, FeedingsHistory, NowForm) {
     // Views reference DOM elements and should only be instantiated onReady.
     domReady(function() {
 
-        var onDeviceReady = function() {
+        var onDeviceReady = function(desktop) {
+            if (desktop !== true)
+                cordova.exec(null, null, 'SplashScreen', 'hide', []);
+
             var feedings = new Feedings();
 
             var nowForm = new NowForm({feedings: feedings});
