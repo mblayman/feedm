@@ -1,0 +1,13 @@
+{
+    "name": "Feedm",
+    "description": "An app for tracking baby feedings",
+    "launch_path": "/index.html",
+    "icons": {
+        "128": "/images/icon-128.png"
+    },
+    "version": "1",
+    "developer": {
+        "name": "Matt Layman"
+    },
+    "default_locale": "en"
+}
