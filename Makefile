@@ -38,6 +38,7 @@ rjs:
 prod: clean rjs
 	$(RJS) -o app.build.js
 	rm -rf $(PROD_EXTRAS)
+	cd production; sed '/cordova.js/d' index.html > firefox.html
 
 package: prod
 	cd production; zip -r ../feedm.zip *

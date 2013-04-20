@@ -71,7 +71,7 @@ function(domReady, $, Feedings, FeedingsHistory, NowForm) {
             // This is running on a device so waiting for deviceready event
             document.addEventListener('deviceready', onDeviceReady, false);
         } else {
-            // On desktop don't have to wait for anything
+            // On the desktop, there is nothing to wait for.
             onDeviceReady(true);
         }
     });
