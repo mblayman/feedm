@@ -9,6 +9,7 @@ PROD_EXTRAS=production/node_modules \
             production/app.build.js \
             production/build.txt \
             production/date.js \
+            production/icon.xcf \
             production/Makefile \
             production/models \
             production/templates \
