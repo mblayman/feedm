@@ -3,7 +3,8 @@
     "description": "An app for tracking baby feedings",
     "launch_path": "/firefox.html",
     "icons": {
-        "60": "/images/icon-60.png"
+        "60": "/images/icon-60.png",
+        "128": "/images/icon-128.png"
     },
     "version": "1",
     "developer": {
