@@ -11,6 +11,7 @@ PROD_EXTRAS=production/node_modules \
             production/date.js \
             production/icon.xcf \
             production/Makefile \
+            production/marketing \
             production/models \
             production/templates \
             production/vendor \

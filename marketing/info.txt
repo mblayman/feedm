@@ -1,0 +1,25 @@
+Details
+=======
+
+Feedm is a super simple application to help parents of newborns keep track of when their baby ate. It is for those bleary eyed moments at 2am when you can't remember how much your little one had two hours ago.
+
+I created Feedm to help me remember my son's feedings and hopefully it can help you too!
+
+Privacy
+=======
+
+All information recorded by Feedm remains on your device.
+
+Captions
+========
+
+Screenshot 1
+------------
+
+The main screen shows your baby's feedings.
+
+Screenshot 2
+------------
+
+Adding a new feeding is so easy!
+
