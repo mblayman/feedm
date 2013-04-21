@@ -8,12 +8,18 @@ define(function() {
                date.getDate() === anotherDate.getDate();
     };
 
+    // Add a zero to a number less than 10 to pad it out.
+    var twoDigits = function(n) {
+        return (n < 10 ? '0' : '') + n;
+    };
+
     // Display the date from the time (in milliseconds).
     Date._date = function(time) {
         var date = new Date(time),
             month;
         month = date.getMonth() + 1;
-        return date.getFullYear() + '-' + month + '-' + date.getDate();
+        return date.getFullYear() + '-' + twoDigits(month) + '-' +
+            twoDigits(date.getDate());
     };
 
     Date.date = function(time) {
@@ -55,8 +61,7 @@ define(function() {
         // Midnight should be 12 not 0.
         hour = hour === 0 ? 12 : hour;
         meridiem = d.getHours() > 12 ? 'pm' : 'am';
-        minutes = d.getMinutes() <= 9 ? '0' + d.getMinutes() : d.getMinutes();
-        return hour + ':' + minutes + meridiem;
+        return hour + ':' + twoDigits(d.getMinutes()) + meridiem;
     };
 
     return Date;
