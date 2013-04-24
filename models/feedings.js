@@ -1,4 +1,10 @@
-define(['backbone', 'backbone.localStorage'], function(Backbone) {
+define([
+    'backbone',
+    'units',
+    'backbone.localStorage',
+    ],
+
+function(Backbone, Units) {
     // The basic unit of measure is a feeding.
     var Feeding = Backbone.Model.extend({});
 
@@ -11,12 +17,10 @@ define(['backbone', 'backbone.localStorage'], function(Backbone) {
         addOne: function(feeding) {
             // Use the unit to record the equivalent in the opposite unit.
             if (feeding['oz']) {
-                // FIXME: create a conversion function.
-                feeding.ml = 100;
+                feeding.ml = Units.oz_to_ml(feeding.oz);
             }
             else if (feeding['ml']) {
-                // FIXME: create a conversion function.
-                feeding.oz = 4;
+                feeding.oz = Units.ml_to_oz(feeding.ml);
             }
 
             this.create(feeding);
@@ -25,3 +29,4 @@ define(['backbone', 'backbone.localStorage'], function(Backbone) {
 
     return Feedings;
 });
+

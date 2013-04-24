@@ -12,14 +12,7 @@ requirejs.config({
     shim: {
         backbone: {
             deps: ['jquery', 'underscore', 'json2'],
-            exports: 'Backbone',
-            init: function($) {
-                // Backbone is referencing $ directly in setElement and this is
-                // blowing up during optimization. Therefore, set jQuery.
-                // FIXME: With the new RequireJS, exports does not work like
-                // it used to. I don't know if setDomLibrary is still needed.
-                //Backbone.setDomLibrary($);
-            }
+            exports: 'Backbone'
         },
         'backbone.localStorage': {
             deps: ['backbone'],
