@@ -8,12 +8,14 @@ PROD_EXTRAS=production/node_modules \
             production/.gitignore \
             production/app.build.js \
             production/build.txt \
+            production/compressor.py \
             production/date.js \
             production/icon.xcf \
             production/Makefile \
             production/marketing \
             production/models \
             production/templates \
+            production/units.js \
             production/vendor \
             production/views \
             production/README.md
@@ -41,6 +43,7 @@ prod: clean rjs
 	$(RJS) -o app.build.js
 	rm -rf $(PROD_EXTRAS)
 	cd production; sed '/cordova.js/d' index.html > firefox.html
+	python compressor.py production
 
 package: prod
 	cd production; zip -r ../feedm.zip *
