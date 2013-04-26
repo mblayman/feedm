@@ -8,4 +8,5 @@
     <description>An app for tracking baby feedings</description>
     <author>Matt Layman</author>
     <preference name='auto-hide-splash-screen' value='false' />
+    <preference name='android-minSdkVersion' value='11' />
 </widget>
