@@ -43,7 +43,8 @@ prod: clean rjs
 	$(RJS) -o app.build.js
 	rm -rf $(PROD_EXTRAS)
 	cd production; sed '/cordova.js/d' index.html > firefox.html
-	python compressor.py production
+# Disable compression. It doesn't help right now and I'm not sure it ever will.
+#	python compressor.py production
 
 package: prod
 	cd production; zip -r ../feedm.zip *
