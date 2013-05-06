@@ -6,18 +6,12 @@ RJS=./node_modules/.bin/r.js
 PROD_EXTRAS=production/node_modules \
             production/.git \
             production/.gitignore \
-            production/app.build.js \
             production/build.txt \
             production/compressor.py \
-            production/date.js \
+            production/css/main.css \
             production/icon.xcf \
             production/Makefile \
             production/marketing \
-            production/models \
-            production/templates \
-            production/units.js \
-            production/vendor \
-            production/views \
             production/README.md
 
 go:
@@ -40,11 +34,12 @@ rjs:
 	@test -e $(RJS) || npm install requirejs
 
 prod: clean rjs
-	$(RJS) -o app.build.js
+	$(RJS) -o js/app.build.js
+	cat production/css/main.css >> production/css/jquery.mobile-1.3.0.css
 	rm -rf $(PROD_EXTRAS)
+	cd production; sed '/main.css/d' index.html > i.bak; mv i.bak index.html
 	cd production; sed '/cordova.js/d' index.html > firefox.html
-# Disable compression. It doesn't help right now and I'm not sure it ever will.
-#	python compressor.py production
+	cd production; mv js/main.js .; rm -rf js/*; mv main.js js
 
 package: prod
 	cd production; zip -r ../feedm.zip *
